@@ -71,12 +71,21 @@
             text-decoration: none;
             font-size: 18px;
             font-weight: bold;
-            border: none;
-            cursor: pointer;
+            margin-top: 12px;
         }
 
         .button:hover {
             background: #115e59;
+        }
+
+        .test-note {
+            margin-top: 18px;
+            padding: 16px;
+            border-radius: 10px;
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            font-size: 15px;
+            color: #374151;
         }
 
         .section {
@@ -116,54 +125,11 @@
             margin-bottom: 8px;
         }
 
-        .notice {
-            display: none;
-            margin-top: 24px;
-            padding: 22px;
-            border-radius: 14px;
-            background: #fff7ed;
-            border: 1px solid #fed7aa;
-        }
-
-        .email-box {
-            margin-top: 16px;
-        }
-
-        input {
-            padding: 13px;
-            font-size: 16px;
-            width: 260px;
-            max-width: 100%;
-            border-radius: 8px;
-            border: 1px solid #cbd5e1;
-        }
-
-        .small-button {
-            padding: 13px 18px;
-            margin-left: 6px;
-            border: none;
-            border-radius: 8px;
-            background: #1f2937;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
         .footer {
             text-align: center;
             color: #6b7280;
             font-size: 14px;
             margin-top: 30px;
-        }
-
-        .admin {
-            display: none;
-            margin-top: 20px;
-            padding: 14px;
-            background: #e0f2fe;
-            border: 1px solid #7dd3fc;
-            border-radius: 10px;
-            font-size: 14px;
         }
 
         @media (max-width: 600px) {
@@ -175,9 +141,10 @@
                 padding: 28px;
             }
 
-            .small-button {
-                margin-left: 0;
-                margin-top: 10px;
+            .button {
+                width: 100%;
+                box-sizing: border-box;
+                text-align: center;
             }
         }
     </style>
@@ -197,40 +164,35 @@
 
             <div class="cta-box">
                 <div class="price">$2.99 one-time explanation</div>
+
                 <p>
                     Describe your issue, paste a contractor quote, or explain what broke.
                     Receive a simple checklist and next-step explanation.
                 </p>
 
-                <a class="button" href="https://docs.google.com/forms/d/e/1FAIpQLSfb8U_H6nCO0r6a8Bifpyg72qmAtoqQFKLmv5NPItIQvCLCTg/viewform" target="_blank" rel="noopener">
-    Get My Home Repair Explanation — $2.99
-</a>
+                <a
+                    class="button"
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSfb8U_H6nCO0r6a8Bifpyg72qmAtoqQFKLmv5NPItIQvCLCTg/viewform"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    Get My Home Repair Explanation — $2.99
+                </a>
 
-                <div id="notice" class="notice">
-                    <strong>We are not accepting payments yet.</strong>
-                    <p>
-                        This service is being tested. Join the early access list and we may contact you
-                        when the first version is ready.
-                    </p>
-
-                    <div class="email-box">
-                        <input id="emailInput" type="email" placeholder="Enter your email" />
-                        <button class="small-button" onclick="saveEmail()">Join Early Access</button>
-                    </div>
-
-                    <p id="emailMessage"></p>
+                <div class="test-note">
+                    <strong>Early access test:</strong>
+                    We are not accepting payments yet. Clicking the button opens a short early-access form.
                 </div>
-
-                <div id="adminBox" class="admin"></div>
             </div>
         </div>
 
         <div class="section">
             <h2>Use this for questions like:</h2>
+
             <div class="examples">
                 <div class="card">
                     <strong>“Is this contractor quote reasonable?”</strong>
-                    Upload or paste the quote and get a plain-English breakdown.
+                    Paste the quote and get a plain-English breakdown.
                 </div>
 
                 <div class="card">
@@ -240,7 +202,7 @@
 
                 <div class="card">
                     <strong>“Is this urgent or can it wait?”</strong>
-                    Understand possible risk signs before ignoring the issue.
+                    Understand possible warning signs before ignoring the issue.
                 </div>
 
                 <div class="card">
@@ -252,9 +214,10 @@
 
         <div class="section">
             <h2>How it would work</h2>
+
             <ul>
                 <li>Describe the problem in normal language.</li>
-                <li>Add a photo, quote, or repair note if available.</li>
+                <li>Add a contractor quote, repair note, or short explanation.</li>
                 <li>Get a simple explanation and next-step checklist.</li>
                 <li>Use it before calling someone or approving expensive work.</li>
             </ul>
@@ -262,6 +225,7 @@
 
         <div class="section">
             <h2>Important</h2>
+
             <p>
                 This would not replace a licensed contractor, plumber, electrician, inspector, or emergency service.
                 It is designed to help you understand the situation better before deciding what to do next.
@@ -272,64 +236,5 @@
             HomeFix Explainer — fake-door validation page for demand testing.
         </div>
     </div>
-
-    <script>
-        function getClicks() {
-            return Number(localStorage.getItem("payment_clicks") || 0);
-        }
-
-        function getEmails() {
-            return JSON.parse(localStorage.getItem("early_access_emails") || "[]");
-        }
-
-        function handlePaidClick() {
-    window.location.href = "https://docs.google.com/forms/d/e/1FAIpQLSfb8U_H6nCO0r6a8Bifpyg72qmAtoqQFKLmv5NPItIQvCLCTg/viewform";
-}
-        }
-
-        function saveEmail() {
-            const emailInput = document.getElementById("emailInput");
-            const email = emailInput.value.trim();
-
-            if (!email || !email.includes("@")) {
-                document.getElementById("emailMessage").innerText = "Enter a valid email address.";
-                return;
-            }
-
-            const emails = getEmails();
-            emails.push({
-                email: email,
-                saved_at: new Date().toISOString()
-            });
-
-            localStorage.setItem("early_access_emails", JSON.stringify(emails));
-
-            document.getElementById("emailMessage").innerText =
-                "Saved. Thank you. We may contact you when early access opens.";
-
-            emailInput.value = "";
-            updateAdminBox();
-        }
-
-        function updateAdminBox() {
-            const params = new URLSearchParams(window.location.search);
-
-            if (!params.has("admin")) {
-                return;
-            }
-
-            const adminBox = document.getElementById("adminBox");
-            const clicks = getClicks();
-            const emails = getEmails();
-
-            adminBox.style.display = "block";
-            adminBox.innerHTML =
-                "<strong>Local test stats</strong><br>" +
-                "Payment button clicks: " + clicks + "<br>" +
-                "Early access emails saved in this browser: " + emails.length;
-        }
-
-        updateAdminBox();
-    </script>
 </body>
 </html>
