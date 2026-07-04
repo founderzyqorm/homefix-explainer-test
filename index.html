@@ -171,10 +171,14 @@
                 </p>
 
                 <a
-                    class="button"
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSfb8U_H6nCO0r6a8Bifpyg72qmAtoqQFKLmv5NPItIQvCLCTg/viewform"
-                    target="_blank"
-                    rel="noopener"
+                    <a
+    id="homefix-299-button"
+    class="button"
+    href="https://docs.google.com/forms/d/e/1FAIpQLSfb8U_H6nCO0r6a8Bifpyg72qmAtoqQFKLmv5NPItIQvCLCTg/viewform"
+    target="_blank"
+    rel="noopener"
+    onclick="trackHomeFixClick()"
+>
                 >
                     Get My Home Repair Explanation — $2.99
                 </a>
@@ -236,5 +240,18 @@
             HomeFix Explainer — fake-door validation page for demand testing.
         </div>
     </div>
+<script>
+    function trackHomeFixClick() {
+        console.log("HomeFix $2.99 button clicked");
+
+        if (typeof gtag === "function") {
+            gtag("event", "homefix_299_button_click", {
+                event_category: "validation",
+                event_label: "google_form_click"
+            });
+        }
+    }
+</script>
+
 </body>
 </html>
