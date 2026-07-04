@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HomeFix Explainer</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f3ef;
+            color: #1f2933;
+        }
+
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .hero {
+            background: white;
+            padding: 44px;
+            border-radius: 18px;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+        }
+
+        .label {
+            font-size: 14px;
+            font-weight: bold;
+            color: #0f766e;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-size: 44px;
+            line-height: 1.1;
+            margin: 0 0 18px;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            line-height: 1.5;
+            color: #4b5563;
+            margin-bottom: 28px;
+        }
+
+        .cta-box {
+            background: #eefaf7;
+            border: 1px solid #b7e4dc;
+            padding: 24px;
+            border-radius: 14px;
+            margin: 28px 0;
+        }
+
+        .price {
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .button {
+            display: inline-block;
+            background: #0f766e;
+            color: white;
+            padding: 16px 26px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background: #115e59;
+        }
+
+        .section {
+            margin-top: 36px;
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 28px;
+        }
+
+        ul {
+            line-height: 1.8;
+            font-size: 18px;
+        }
+
+        .examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: #f9fafb;
+            padding: 18px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .card strong {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .notice {
+            display: none;
+            margin-top: 24px;
+            padding: 22px;
+            border-radius: 14px;
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+        }
+
+        .email-box {
+            margin-top: 16px;
+        }
+
+        input {
+            padding: 13px;
+            font-size: 16px;
+            width: 260px;
+            max-width: 100%;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+        }
+
+        .small-button {
+            padding: 13px 18px;
+            margin-left: 6px;
+            border: none;
+            border-radius: 8px;
+            background: #1f2937;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .footer {
+            text-align: center;
+            color: #6b7280;
+            font-size: 14px;
+            margin-top: 30px;
+        }
+
+        .admin {
+            display: none;
+            margin-top: 20px;
+            padding: 14px;
+            background: #e0f2fe;
+            border: 1px solid #7dd3fc;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 34px;
+            }
+
+            .hero {
+                padding: 28px;
+            }
+
+            .small-button {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="hero">
+            <div class="label">Home repair clarity in minutes</div>
+
+            <h1>Confused by a home repair problem or contractor quote?</h1>
+
+            <p class="subtitle">
+                Get a plain-English explanation of what might be going on,
+                what questions to ask, and what to watch out for before you spend real money.
+            </p>
+
+            <div class="cta-box">
+                <div class="price">$2.99 one-time explanation</div>
+                <p>
+                    Describe your issue, paste a contractor quote, or explain what broke.
+                    Receive a simple checklist and next-step explanation.
+                </p>
+
+                <button class="button" onclick="handlePaidClick()">
+                    Get My Home Repair Explanation — $2.99
+                </button>
+
+                <div id="notice" class="notice">
+                    <strong>We are not accepting payments yet.</strong>
+                    <p>
+                        This service is being tested. Join the early access list and we may contact you
+                        when the first version is ready.
+                    </p>
+
+                    <div class="email-box">
+                        <input id="emailInput" type="email" placeholder="Enter your email" />
+                        <button class="small-button" onclick="saveEmail()">Join Early Access</button>
+                    </div>
+
+                    <p id="emailMessage"></p>
+                </div>
+
+                <div id="adminBox" class="admin"></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Use this for questions like:</h2>
+            <div class="examples">
+                <div class="card">
+                    <strong>“Is this contractor quote reasonable?”</strong>
+                    Upload or paste the quote and get a plain-English breakdown.
+                </div>
+
+                <div class="card">
+                    <strong>“Do I need a plumber, handyman, or electrician?”</strong>
+                    Get help deciding who to call first.
+                </div>
+
+                <div class="card">
+                    <strong>“Is this urgent or can it wait?”</strong>
+                    Understand possible risk signs before ignoring the issue.
+                </div>
+
+                <div class="card">
+                    <strong>“What questions should I ask the contractor?”</strong>
+                    Get a short checklist before making calls.
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>How it would work</h2>
+            <ul>
+                <li>Describe the problem in normal language.</li>
+                <li>Add a photo, quote, or repair note if available.</li>
+                <li>Get a simple explanation and next-step checklist.</li>
+                <li>Use it before calling someone or approving expensive work.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Important</h2>
+            <p>
+                This would not replace a licensed contractor, plumber, electrician, inspector, or emergency service.
+                It is designed to help you understand the situation better before deciding what to do next.
+            </p>
+        </div>
+
+        <div class="footer">
+            HomeFix Explainer — fake-door validation page for demand testing.
+        </div>
+    </div>
+
+    <script>
+        function getClicks() {
+            return Number(localStorage.getItem("payment_clicks") || 0);
+        }
+
+        function getEmails() {
+            return JSON.parse(localStorage.getItem("early_access_emails") || "[]");
+        }
+
+        function handlePaidClick() {
+            const clicks = getClicks() + 1;
+            localStorage.setItem("payment_clicks", clicks);
+
+            document.getElementById("notice").style.display = "block";
+            updateAdminBox();
+        }
+
+        function saveEmail() {
+            const emailInput = document.getElementById("emailInput");
+            const email = emailInput.value.trim();
+
+            if (!email || !email.includes("@")) {
+                document.getElementById("emailMessage").innerText = "Enter a valid email address.";
+                return;
+            }
+
+            const emails = getEmails();
+            emails.push({
+                email: email,
+                saved_at: new Date().toISOString()
+            });
+
+            localStorage.setItem("early_access_emails", JSON.stringify(emails));
+
+            document.getElementById("emailMessage").innerText =
+                "Saved. Thank you. We may contact you when early access opens.";
+
+            emailInput.value = "";
+            updateAdminBox();
+        }
+
+        function updateAdminBox() {
+            const params = new URLSearchParams(window.location.search);
+
+            if (!params.has("admin")) {
+                return;
+            }
+
+            const adminBox = document.getElementById("adminBox");
+            const clicks = getClicks();
+            const emails = getEmails();
+
+            adminBox.style.display = "block";
+            adminBox.innerHTML =
+                "<strong>Local test stats</strong><br>" +
+                "Payment button clicks: " + clicks + "<br>" +
+                "Early access emails saved in this browser: " + emails.length;
+        }
+
+        updateAdminBox();
+    </script>
+</body>
+</html>
